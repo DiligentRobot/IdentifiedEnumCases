@@ -34,13 +34,17 @@ final class MacroTests: XCTestCase {
               enum TomatoVariety {}
               enum EggplantVariety {}
             
-              enum CaseID: String, Hashable, CaseIterable, CustomStringConvertible {
+              enum CaseID: String, Hashable, Identifiable, CaseIterable, CustomStringConvertible {
                 case potato
                 case tomato
                 case eggplant
 
                 var description: String {
                   self.rawValue
+                }
+
+                var id: Self {
+                  self
                 }
               }
             
@@ -85,13 +89,17 @@ final class MacroTests: XCTestCase {
             public enum TomatoVariety {}
             public enum EggplantVariety {}
           
-            public enum CaseID: String, Hashable, CaseIterable, CustomStringConvertible {
+            public enum CaseID: String, Hashable, Identifiable, CaseIterable, CustomStringConvertible {
               case potato
               case tomato
               case eggplant
 
               public var description: String {
                 self.rawValue
+              }
+
+              public var id: Self {
+                self
               }
             }
           

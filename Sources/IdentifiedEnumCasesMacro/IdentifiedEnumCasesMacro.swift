@@ -49,8 +49,8 @@ public struct IdentifiedEnumCasesMacro: MemberMacro {
       }
 
       let modifier = declaration.hasPublicModifier ? "public " : ""
-      let enumID = "\(modifier)enum CaseID: String, Hashable, Identifiable, CaseIterable, CustomStringConvertible {\n\(caseIds.map { "  case \($0)\n" }.joined())\n  \(modifier)var description: String {\nself.rawValue\n  }\n \n var id: Self { self }  }"
-      let idAccessor = "\(modifier)var caseID: CaseID {\n  switch self {\n\(caseIds.map { "  case .\($0): .\($0)\n" }.joined()) }\n}"
+      let enumID = "\(modifier)enum CaseID: String, Hashable, Identifiable, CaseIterable, CustomStringConvertible {\n\(caseIds.map { "  case \($0)\n" }.joined())\n  \(modifier)var description: String {\n    self.rawValue\n  }\n\n  \(modifier)var id: Self {\n    self\n  }\n}"
+      let idAccessor = "\(modifier)var caseID: CaseID {\n  switch self {\n\(caseIds.map { "  case .\($0): .\($0)\n" }.joined())  }\n}"
 
       return [
         DeclSyntax(stringLiteral: enumID),
